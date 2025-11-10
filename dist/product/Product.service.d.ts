@@ -1,6 +1,6 @@
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateProductDto } from './dto/CreateProductDto';
-import { ApiResponseDto } from 'src/common/dto/response/ApiResponseDto';
+import { ApiResponseDto } from '../common/dto/response/ApiResponseDto';
 import { ProductDto } from './dto/ProductDto';
 import { UpdateProductDto } from './dto/UpdateProductDto';
 import { ProductListDto } from './dto/ProductListDto';

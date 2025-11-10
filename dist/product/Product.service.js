@@ -123,19 +123,14 @@ let ProductsService = class ProductsService {
         };
     }
     async createProduct(dto, userId) {
-        try {
-            const product = await this.prisma.product.create({
-                data: { ...dto, userId },
-            });
-            return new ApiResponseDto_1.ApiResponseDto(true, 'Product created successfully', new ProductDto_1.ProductDto({
-                ...product,
-                category: product.category ?? undefined,
-                userId: product.userId ?? undefined,
-            }));
-        }
-        catch (error) {
-            throw new common_1.BadRequestException('Invalid product data');
-        }
+        const product = await this.prisma.product.create({
+            data: { ...dto, userId },
+        });
+        return new ApiResponseDto_1.ApiResponseDto(true, 'Product created successfully', new ProductDto_1.ProductDto({
+            ...product,
+            category: product.category ?? undefined,
+            userId: product.userId ?? undefined,
+        }));
     }
     async updateProduct(id, dto) {
         const existing = await this.prisma.product.findUnique({ where: { id } });

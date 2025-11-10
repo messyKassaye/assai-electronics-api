@@ -1,7 +1,7 @@
 import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateProductDto } from './dto/CreateProductDto';
-import { ApiResponseDto } from 'src/common/dto/response/ApiResponseDto';
+import { ApiResponseDto } from '../common/dto/response/ApiResponseDto';
 import { ProductDto } from './dto/ProductDto';
 import { UpdateProductDto } from './dto/UpdateProductDto';
 import { ProductListDto } from './dto/ProductListDto';
@@ -138,23 +138,19 @@ export class ProductsService {
 
 
     async createProduct(dto: CreateProductDto, userId: string): Promise<ApiResponseDto<ProductDto>> {
-        try {
-            const product = await this.prisma.product.create({
-                data: { ...dto, userId },
-            });
+        const product = await this.prisma.product.create({
+            data: { ...dto, userId },
+        });
 
-            return new ApiResponseDto<ProductDto>(
-                true,
-                'Product created successfully',
-                new ProductDto({
-                    ...product,
-                    category: product.category ?? undefined,
-                    userId: product.userId ?? undefined,
-                }),
-            );
-        } catch (error) {
-            throw new BadRequestException('Invalid product data');
-        }
+        return new ApiResponseDto<ProductDto>(
+            true,
+            'Product created successfully',
+            new ProductDto({
+                ...product,
+                category: product.category ?? undefined,
+                userId: product.userId ?? undefined,
+            }),
+        );
     }
 
     async updateProduct(id: string, dto: UpdateProductDto): Promise<ApiResponseDto<ProductDto>> {

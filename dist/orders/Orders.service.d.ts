@@ -1,7 +1,7 @@
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateOrderDto } from './dto/createOrderDto';
-import { ApiResponseDto } from 'src/common/dto/response/ApiResponseDto';
 import { OrderResponseDto } from './dto/OrderResponseDto';
+import { ApiResponseDto } from '../common/dto/response/ApiResponseDto';
 export declare class OrdersService {
     private prisma;
     constructor(prisma: PrismaService);
