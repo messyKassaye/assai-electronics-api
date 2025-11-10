@@ -7,6 +7,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { CommonModule } from './common/common.module';
 import { ProductModule } from './product/product.module';
+import { OrdersModule } from './orders/orders.module';
 import databaseConfig from './config/database.config';
 import jwtConfig from './config/jwt.config';
 
@@ -20,7 +21,8 @@ import jwtConfig from './config/jwt.config';
     PrismaModule,
     UserModule,
     CommonModule,
-    ProductModule
+    ProductModule,
+    OrdersModule
   ],
   controllers: [AppController],
   providers: [AppService],
