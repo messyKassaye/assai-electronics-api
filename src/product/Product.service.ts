@@ -5,6 +5,8 @@ import { ApiResponseDto } from '../common/dto/response/ApiResponseDto';
 import { ProductDto } from './dto/ProductDto';
 import { UpdateProductDto } from './dto/UpdateProductDto';
 import { ProductListDto } from './dto/ProductListDto';
+import { basename } from 'path';
+
 
 @Injectable()
 export class ProductsService {
@@ -27,6 +29,7 @@ export class ProductsService {
                     stock: true,
                     category: true,
                     userId: true,
+                    images: true
                 },
             }),
         ]);
@@ -204,6 +207,30 @@ export class ProductsService {
             object: null,
             errors: null
         }
+    }
+
+    async addProductImage(productId: string, filePath: string): Promise<ApiResponseDto<ProductDto>> {
+        const baseUrl = process.env.BASE_URL || 'http://localhost:5000';
+        const fileName = basename(filePath).replace(/\\/g, '/'); // ensures forward slashes
+        const imageUrl = `${baseUrl}/uploads/${fileName}`;
+
+
+        const product = await this.prisma.product.update({
+            where: { id: productId },
+            data: {
+                images: { push: imageUrl }, // append image URL
+            },
+        });
+        return {
+            success: true,
+            message: 'Image uploaded',
+            object: new ProductDto({
+                ...product,
+                category: product.category ?? undefined,
+                userId: product.userId ?? undefined,
+            }),
+            errors: null
+        };
     }
 
 }

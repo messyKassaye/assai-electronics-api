@@ -46,6 +46,9 @@ const Product_controller_1 = require("./Product.controller");
 const Product_service_1 = require("./Product.service");
 const redisStore = __importStar(require("cache-manager-ioredis"));
 const cache_manager_1 = require("@nestjs/cache-manager");
+const platform_express_1 = require("@nestjs/platform-express");
+const multer_1 = require("multer");
+const path_1 = require("path");
 let ProductModule = class ProductModule {
 };
 exports.ProductModule = ProductModule;
@@ -59,6 +62,15 @@ exports.ProductModule = ProductModule = __decorate([
                     host: process.env.REDIS_HOST || 'localhost',
                     port: Number(process.env.REDIS_PORT) || 6379,
                     ttl: Number(process.env.REDIS_TTL) || 60,
+                }),
+            }),
+            platform_express_1.MulterModule.register({
+                storage: (0, multer_1.diskStorage)({
+                    destination: './uploads',
+                    filename: (req, file, cb) => {
+                        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+                        cb(null, `${uniqueSuffix}${(0, path_1.extname)(file.originalname)}`);
+                    },
                 }),
             }),
         ],

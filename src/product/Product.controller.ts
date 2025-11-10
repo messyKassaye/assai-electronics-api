@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards, Request, HttpCode, HttpStatus, Put, Param, Get, Query, Delete, Inject } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Request, HttpCode, HttpStatus, Put, Param, Get, Query, Delete, Inject, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { Roles } from 'src/auth/decorators/roles.decorators';
 import { JwtAuthGuard } from 'src/auth/guards/jwtauth.guard';
 import { CreateProductDto } from './dto/CreateProductDto';
@@ -9,6 +9,10 @@ import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { UpdateProductDto } from './dto/UpdateProductDto';
 import type { Cache } from 'cache-manager';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { ApiBody, ApiConsumes, ApiOperation } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
+import type { File as MulterFile } from 'multer';
+
 
 
 @Controller('products')
@@ -86,5 +90,22 @@ export class ProductsController {
     @HttpCode(HttpStatus.OK)
     async deleteProduct(@Param('id') id: string): Promise<ApiResponseDto<null>> {
         return await this.productsService.deleteProduct(id);
+    }
+
+    @Post(':id/upload')
+    @ApiOperation({ summary: 'Upload product image' })
+    @ApiConsumes('multipart/form-data')
+    @ApiBody({
+        schema: {
+            type: 'object',
+            properties: {
+                file: { type: 'string', format: 'binary' },
+            },
+        },
+    })
+    @UseInterceptors(FileInterceptor('file'))
+    @Roles('ADMIN')
+    async uploadProductImage(@Param('id') id: string, @UploadedFile() file: MulterFile) {
+        return this.productsService.addProductImage(id, file.path); // for local storage
     }
 }

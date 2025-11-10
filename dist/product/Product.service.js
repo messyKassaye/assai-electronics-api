@@ -14,6 +14,7 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
 const ApiResponseDto_1 = require("../common/dto/response/ApiResponseDto");
 const ProductDto_1 = require("./dto/ProductDto");
+const path_1 = require("path");
 let ProductsService = class ProductsService {
     prisma;
     constructor(prisma) {
@@ -34,6 +35,7 @@ let ProductsService = class ProductsService {
                     stock: true,
                     category: true,
                     userId: true,
+                    images: true
                 },
             }),
         ]);
@@ -167,6 +169,27 @@ let ProductsService = class ProductsService {
             success: true,
             message: 'Product deleted successfully',
             object: null,
+            errors: null
+        };
+    }
+    async addProductImage(productId, filePath) {
+        const baseUrl = process.env.BASE_URL || 'http://localhost:5000';
+        const fileName = (0, path_1.basename)(filePath).replace(/\\/g, '/');
+        const imageUrl = `${baseUrl}/uploads/${fileName}`;
+        const product = await this.prisma.product.update({
+            where: { id: productId },
+            data: {
+                images: { push: imageUrl },
+            },
+        });
+        return {
+            success: true,
+            message: 'Image uploaded',
+            object: new ProductDto_1.ProductDto({
+                ...product,
+                category: product.category ?? undefined,
+                userId: product.userId ?? undefined,
+            }),
             errors: null
         };
     }

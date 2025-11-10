@@ -4,6 +4,7 @@ import { ProductDto } from './dto/ProductDto';
 import { ProductsService } from './Product.service';
 import { UpdateProductDto } from './dto/UpdateProductDto';
 import type { Cache } from 'cache-manager';
+import type { File as MulterFile } from 'multer';
 export declare class ProductsController {
     private readonly productsService;
     private cacheManager;
@@ -13,4 +14,5 @@ export declare class ProductsController {
     getProductById(id: string): Promise<ApiResponseDto<ProductDto>>;
     update(id: string, dto: UpdateProductDto): Promise<ApiResponseDto<ProductDto>>;
     deleteProduct(id: string): Promise<ApiResponseDto<null>>;
+    uploadProductImage(id: string, file: MulterFile): Promise<ApiResponseDto<ProductDto>>;
 }

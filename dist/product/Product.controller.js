@@ -21,6 +21,8 @@ const Product_service_1 = require("./Product.service");
 const roles_guard_1 = require("../auth/guards/roles.guard");
 const UpdateProductDto_1 = require("./dto/UpdateProductDto");
 const cache_manager_1 = require("@nestjs/cache-manager");
+const swagger_1 = require("@nestjs/swagger");
+const platform_express_1 = require("@nestjs/platform-express");
 let ProductsController = class ProductsController {
     productsService;
     cacheManager;
@@ -57,6 +59,9 @@ let ProductsController = class ProductsController {
     }
     async deleteProduct(id) {
         return await this.productsService.deleteProduct(id);
+    }
+    async uploadProductImage(id, file) {
+        return this.productsService.addProductImage(id, file.path);
     }
 };
 exports.ProductsController = ProductsController;
@@ -110,6 +115,26 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "deleteProduct", null);
+__decorate([
+    (0, common_1.Post)(':id/upload'),
+    (0, swagger_1.ApiOperation)({ summary: 'Upload product image' }),
+    (0, swagger_1.ApiConsumes)('multipart/form-data'),
+    (0, swagger_1.ApiBody)({
+        schema: {
+            type: 'object',
+            properties: {
+                file: { type: 'string', format: 'binary' },
+            },
+        },
+    }),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file')),
+    (0, roles_decorators_1.Roles)('ADMIN'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.UploadedFile)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], ProductsController.prototype, "uploadProductImage", null);
 exports.ProductsController = ProductsController = __decorate([
     (0, common_1.Controller)('products'),
     __param(1, (0, common_1.Inject)(cache_manager_1.CACHE_MANAGER)),

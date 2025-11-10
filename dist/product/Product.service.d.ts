@@ -13,4 +13,5 @@ export declare class ProductsService {
     createProduct(dto: CreateProductDto, userId: string): Promise<ApiResponseDto<ProductDto>>;
     updateProduct(id: string, dto: UpdateProductDto): Promise<ApiResponseDto<ProductDto>>;
     deleteProduct(id: string): Promise<ApiResponseDto<null>>;
+    addProductImage(productId: string, filePath: string): Promise<ApiResponseDto<ProductDto>>;
 }
