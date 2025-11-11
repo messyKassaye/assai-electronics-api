@@ -36,13 +36,22 @@ This is a **NestJS backend** for an e-commerce platform. It provides user authen
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/messyKassaye/a2sv-api
-cd a2sv-api
+git clone https://github.com/messyKassaye/a2sv-api && cd a2sv-api
 ```
 
 ## Environment Variables
 
 Create a `.env` file in the root directory or rename `.env.example` into `.env`:
+
+# Mac / Linux
+mv .env.example .env
+
+# Windows CMD
+rename .env.example .env
+
+# Windows PowerShell
+Rename-Item .env.example .env
+
 
 ```env
 NODE_ENV=development
@@ -73,7 +82,7 @@ npm install
 3. Initialize Prisma:
 
 ```bash
-npm run prisma
+npx prisma generate && npm run migrate
 ```
 
 4. (Optional) Start Redis if using caching or use docker:
