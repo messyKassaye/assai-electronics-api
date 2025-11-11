@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "14f5e180-fed7-4150-b967-d753ffa3dfeb",
+		"name": "A2SV-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38357290",
+		"_collection_link": "https://convext.postman.co/workspace/Convext-Workspace~c218f662-ddf9-4fdf-8c7e-1d507d01e514/collection/38357290-14f5e180-fed7-4150-b967-d753ffa3dfeb?action=share&source=collection_link&creator=38357290"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"meseret@gmail.com\",\r\n    \"username\": \"meseret\",\r\n    \"password\":\"MESERET98@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"kassayemeseret21@gmail.com\",\r\n    \"password\": \"MESERET98@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createProduct",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NTNlMjlhZS0zOGRkLTQ2OGUtYWRmNC0wNjRhNTYwZDg3MzciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjI4Njg2OTIsImV4cCI6MTc2Mjg2OTU5Mn0.DX5v_rmaAEBCQY0TQVEKsdS1ukt_V0oL2zAWPnc1yAE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"MAcbook pro 13\",\r\n    \"description\":\"MAcbook pro for your game and development\",\r\n    \"price\":1200,\r\n    \"stock\":5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/products/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyYjhiMDcwNi0wOWZiLTQ2NzgtOTliNC00NWZhMmM0NDZlYTgiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2Mjg2ODQ4MSwiZXhwIjoxNzYyODY5MzgxfQ.xyc6UtL9vYQeD_o0l5UMGd6oxvaO0_xvxKydD4pdYUU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/products/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NTNlMjlhZS0zOGRkLTQ2OGUtYWRmNC0wNjRhNTYwZDg3MzciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjI4Njg2OTIsImV4cCI6MTc2Mjg2OTU5Mn0.DX5v_rmaAEBCQY0TQVEKsdS1ukt_V0oL2zAWPnc1yAE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/products/?page=1&limit=10",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchProducts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/products/?search=Mac",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "Mac"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "advancedSearch",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/products/?search=Mac&category=Electronics&minPrice=100&sortBy=price&order=asc",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "Mac"
+						},
+						{
+							"key": "category",
+							"value": "Electronics"
+						},
+						{
+							"key": "minPrice",
+							"value": "100"
+						},
+						{
+							"key": "sortBy",
+							"value": "price"
+						},
+						{
+							"key": "order",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "uploadimage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NTNlMjlhZS0zOGRkLTQ2OGUtYWRmNC0wNjRhNTYwZDg3MzciLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NjI3ODM5MjIsImV4cCI6MTc2Mjc4NDgyMn0.obh9EudCajIEioD1z7HYwEvGgEd4i7AXaOwqiEMo2TI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/HP/Downloads/ChatGPT Image Nov 3, 2025, 11_31_38 AM.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/products/51914a11-a90e-4201-a06e-726a4ec5c286/upload",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products",
+						"51914a11-a90e-4201-a06e-726a4ec5c286",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlY2JiNWY1Ni1mYTg5LTRjNTMtYTQxYi0yNjFmOTc4MmI0NjAiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2Mjg0Mjc5NiwiZXhwIjoxNzYyODQzNjk2fQ.bhyKCvFTUXlvWaljFzj-VAbtRgs-0BP2sVuOxJOLPAw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"items\":[{ \"productId\": \"2512cefd-b465-4d6a-a245-6b2b47c24e26\", \"quantity\": 1 }, { \"productId\": \"51914a11-a90e-4201-a06e-726a4ec5c286\", \"quantity\": 1 }],\r\n    \"description\":\"The product orders\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/orders",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "myOrders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ZjgxMmY4ZS1hNzBhLTQ4NDktYTVmMi01ZjYzMzVmNDBhMmIiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2Mjc3ODg5OCwiZXhwIjoxNzYyNzc5Nzk4fQ.VFSkWBkZEISIPb8MckcVan6pFObM9PDAZlqG8xiiSZo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"items\":[{ \"productId\": \"uuid-for-product-a\", \"quantity\": 2 }, { \"productId\": \"uuid-for-product-b\", \"quantity\": 1 }]\r\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/orders",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
