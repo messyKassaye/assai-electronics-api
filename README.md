@@ -91,10 +91,21 @@ npm run seed
 ```
 ---
 
+
+
 ## Running the Project
 
 ```bash
 npm run start:dev
+```
+
+## Use the Following Credentials to Create a Product as Admin
+- **POST /auth/login** – User login, returns accessToken
+```json
+{
+  "email": "kassayemeseret21@gmail.com",
+  "password": "MESERET98@gmail.com"
+}
 ```
 
 Swagger API documentation available at:  
@@ -119,7 +130,7 @@ Example Request Body:
 }
 ```
 
-- **POST /auth/login** – User login, returns JWT  
+- **POST /auth/login** – User login, returns accessToken 
 Example Request Body:
 
 ```json
