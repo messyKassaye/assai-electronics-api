@@ -73,8 +73,7 @@ npm install
 3. Initialize Prisma:
 
 ```bash
-npx prisma generate
-npm run migrate
+npm run prisma
 ```
 
 4. (Optional) Start Redis if using caching or use docker:
@@ -82,15 +81,6 @@ npm run migrate
 ```bash
 redis-server
 ```
-
----
-## Run seeder to create ADMIN
-### Use the following command to run the database seeder and create the ADMIN
-```bash
-npm run seed
-```
----
-
 
 
 ## Running the Project
